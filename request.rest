@@ -1,32 +1,3 @@
-### Add a new post
-POST http://localhost:3000/post
-Content-Type: application/json
-
-{
-  "title": "First Post",
-  "content": "This is the content of my first post",
-  "sender": "12345"
-}
-
-### Get all posts
-GET http://localhost:3000/posts
-
-### Get a post by ID
-GET http://localhost:3000/post/<post_id>
-
-### Get posts by sender
-GET http://localhost:3000/post?sender=12345
-
-### Update a post
-PUT http://localhost:3000/post/<post_id>
-Content-Type: application/json
-
-{
-  "title": "Updated Post",
-  "content": "This is the updated content of my post",
-  "sender": "12345"
-}
-
 ### Add a new comment
 POST http://localhost:3000/comment
 Content-Type: application/json
