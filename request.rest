@@ -1,13 +1,34 @@
-###
+### Add a new Post
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "sender": "Revital",
+    "title": "My first post",
+    "content": "This is my first post"
+}
+
+### Get all posts
 
 GET http://localhost:3000/posts
 
-###
+### Get a post by id
 
-POST http://localhost:3000/posts
+GET http://localhost:3000/posts/673b8596fc9fa32a4e8a1a3b
 
-###
+### Get posts by sender
 
-DELETE http://localhost:3000/posts
+GET http://localhost:3000/posts?sender=Revital
 
-###
+
+### Update a post
+
+PUT http://localhost:3000/posts/673b8596fc9fa32a4e8a1a3b
+Content-Type: application/json
+
+{
+    "sender": "Yaara",
+    "title": "My updated post",
+    "content": "This is my updated post"
+}
+
