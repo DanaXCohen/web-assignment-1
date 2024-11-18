@@ -44,7 +44,7 @@ GET http://localhost:3000/comments
 GET http://localhost:3000/comments/<post_id>
 
 ### Update a comment
-PUT http://localhost:3000/comment/<comment_id>
+PUT http://localhost:3000/comment/dc
 Content-Type: application/json
 
 {
