@@ -14,7 +14,7 @@ GET http://localhost:3000/posts
 
 ### Get a post by id
 
-GET http://localhost:3000/posts/673b8596fc9fa32a4e8a1a3b
+GET http://localhost:3000/posts/673b88268b2acc78014e1693
 
 ### Get posts by sender
 
@@ -23,7 +23,7 @@ GET http://localhost:3000/posts?sender=Revital
 
 ### Update a post
 
-PUT http://localhost:3000/posts/673b8596fc9fa32a4e8a1a3b
+PUT http://localhost:3000/posts/673b88268b2acc78014e1693
 Content-Type: application/json
 
 {
