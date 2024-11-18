@@ -1,0 +1,28 @@
+{
+  "name": "WebAssignment1",
+  "version": "1.0.0",
+  "description": "Web assignment #1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "mongo:up": "docker-compose -f ../docker-compose-dev.yml up -d",
+    "mongo:down": "docker-compose -f ../docker-compose-dev.yml down",
+    "start:dev": "npm run mongo:up; sleep 3; npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanaXCohen/web-assignment-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanaXCohen/web-assignment-1"
+  },
+  "homepage": "https://github.com/DanaXCohen/web-assignment-1",
+  "dependencies": {
+    "express": "^4.19.2",
+    "json": "11.0.0",
+    "mongoose": "^8.5.3"
+  }
+}
