@@ -1,17 +1,23 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const commentRoutes = require('./routes/comments');
-
+const express = require('express')
 const app = express();
+require("dotenv").config();
+const commentRoutes = require('./routes/comments');
+const port = process.env.PORT;
+const mongoose = require("mongoose")
+mongoose.connect(process.env.DB_CONNECT);
+const db = mongoose.connection;
 
-mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true });
+db.on("error", console.error.bind(console, "conenction error:"));
+db.once("open", () => {
+    console.log("Connected to the database");
+})
 
+const bodyParser = require("body-parser");
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', commentRoutes);
+app.use('/comments', commentRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
 });
