@@ -1,6 +1,6 @@
 @postId = 673b88268b2acc78014e1693
 @sender = Revital
-@comment_id = 6738b9c30e8d99f8abfb5db3
+@comment_id = 674cc43dafcc0ddf5915bd3e
 @post_id = post123
 
 # Posts
@@ -39,23 +39,23 @@ Content-Type: application/json
 }
 
 ### Add a new comment
-POST http://localhost:3000/comments/addComment
+POST http://localhost:3000/comments
 Content-Type: application/json
 
 {
-  "postId": "<post_id>",
+  "postId": "{{post_id}}",
   "content": "This is a comment",
   "author": "67890"
 }
 
 ### Get all comments
-GET http://localhost:3000/comments/getAll
+GET http://localhost:3000/comments
 
 ### Get comments by post ID
-GET http://localhost:3000/comments/<post_id>
+GET http://localhost:3000/comments/{{post_id}}
 
 ### Update a comment
-PUT http://localhost:3000/comment/<comment_id>
+PUT http://localhost:3000/comments/{{comment_id}}
 Content-Type: application/json
 
 {
@@ -64,4 +64,4 @@ Content-Type: application/json
 }
 
 ### Delete a comment
-DELETE http://localhost:3000/comment/<comment_id>
+DELETE http://localhost:3000/comments/{{comment_id}}
