@@ -1,28 +1,23 @@
 {
-  "name": "WebAssignment1",
+  "name": "web-assignment-1",
   "version": "1.0.0",
-  "description": "Web assignment #1",
-  "main": "app.js",
+  "description": "First assignment",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
     "dev": "nodemon app.js",
-    "mongo:up": "docker-compose -f ../docker-compose-dev.yml up -d",
-    "mongo:down": "docker-compose -f ../docker-compose-dev.yml down",
-    "start:dev": "npm run mongo:up; sleep 3; npm run start"
+    "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DanaXCohen/web-assignment-1.git"
-  },
-  "author": "",
+  "keywords": [],
+  "author": "Revital Frid & Dana Cohen",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DanaXCohen/web-assignment-1"
-  },
-  "homepage": "https://github.com/DanaXCohen/web-assignment-1",
   "dependencies": {
-    "express": "^4.19.2",
-    "json": "11.0.0",
-    "mongoose": "^8.5.3"
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "http-status-codes": "^2.3.0",
+    "mongoose": "^8.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
