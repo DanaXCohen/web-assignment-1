@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 require("dotenv").config();
-const commentRoutes = require('./routes/comments');
+const commentRoutes = require('./routes/comments_routes');
 const postsRoutes = require("./routes/posts_routes");
 const port = process.env.PORT;
 const bodyParser = require("body-parser");
