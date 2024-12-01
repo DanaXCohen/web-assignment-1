@@ -1,0 +1,38 @@
+@postId = 673b88268b2acc78014e1693
+@sender = Revital
+
+# Posts
+
+### Add a new Post
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "sender": "{{sender}}",
+    "title": "My first post",
+    "content": "This is my first post"
+}
+
+### Get all posts
+
+GET http://localhost:3000/posts
+
+### Get a post by id
+
+GET http://localhost:3000/posts/{{postId}}
+
+### Get posts by sender
+
+GET http://localhost:3000/posts?sender={{sender}}
+
+
+### Update a post
+
+PUT http://localhost:3000/posts/{{postId}}
+Content-Type: application/json
+
+{
+    "title": "My updated post",
+    "content": "This is my updated post"
+}
+
