@@ -1,6 +1,7 @@
 @postId = 673b88268b2acc78014e1693
 @sender = Revital
-@comment_id = 6738b9c30e8d99f8abfb5db3 @post_id = post123
+@comment_id = 6738b9c30e8d99f8abfb5db3
+@post_id = post123
 
 # Posts
 
