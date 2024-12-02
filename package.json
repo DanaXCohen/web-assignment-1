@@ -7,7 +7,6 @@
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
-  "keywords": [],
   "author": "Revital Frid & Dana Cohen",
   "license": "ISC",
   "dependencies": {

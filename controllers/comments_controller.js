@@ -1,11 +1,12 @@
-const PostModel = require("../models/posts_model");
+const Comment = require("../models/comments_model");
 const { StatusCodes } = require("http-status-codes");
 
-const createPost = async (req, res) => {
-    const postBody = req.body;
+
+const addComment = async (req, res) => {
     try {
-        const post = await PostModel.create(postBody);
-        res.status(StatusCodes.CREATED).send(post);
+        const comment = new Comment(req.body);
+        await comment.save();
+        res.send(comment);
     } catch (error) {
         if (error.name === "ValidationError") {
             res.status(StatusCodes.BAD_REQUEST).send({ error: "Validation error", details: error.message });
@@ -15,17 +16,19 @@ const createPost = async (req, res) => {
     }
 };
 
-const getAllPosts = async (req, res) => {
-    const filter = req.query.sender;
-
+const getAllComments = async (req, res) => {
     try {
-        if (filter) {
-            const posts = await PostModel.find({ sender: filter });
-            res.send(posts);
-        } else {
-            const posts = await PostModel.find();
-            res.send(posts);
-        }
+        const comments = await Comment.find();
+        res.send(comments);
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error: "Server error", details: error.message });
+    }
+};
+
+const getCommentsByPostId = async (req, res) => {
+    try {
+        const comments = await Comment.find({ postId: req.params.postId });
+        res.send(comments);
     } catch (error) {
         if (error.name === "ValidationError") {
             res.status(StatusCodes.BAD_REQUEST).send({ error: "Validation error", details: error.message });
@@ -35,16 +38,13 @@ const getAllPosts = async (req, res) => {
     }
 };
 
-const getPostById = async (req, res) => {
-    const postId = req.params.id;
-
+const updateComment = async (req, res) => {
     try {
-        const post = await PostModel.findById(postId);
-        if (post) {
-            res.send(post);
-        } else {
-            res.status(StatusCodes.NOT_FOUND).send("Post not found");
+        const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!comment) {
+            return res.status(StatusCodes.NOT_FOUND).send("Comment not found");
         }
+        res.send(comment);
     } catch (error) {
         if (error.name === "ValidationError") {
             res.status(StatusCodes.BAD_REQUEST).send({ error: "Validation error", details: error.message });
@@ -54,17 +54,10 @@ const getPostById = async (req, res) => {
     }
 };
 
-const updatePost = async (req, res) => {
-    const postId = req.params.id;
-    const { title, content } = req.body;
-
+const deleteComment = async (req, res) => {
     try {
-        const post = await PostModel.findByIdAndUpdate(postId, { title, content }, { new: true, runValidators: true });
-        if (post) {
-            res.send(post);
-        } else {
-            res.status(StatusCodes.NOT_FOUND).send("Post not found");
-        }
+        await Comment.findByIdAndDelete(req.params.id);
+        res.send({ message: "Comment deleted" });
     } catch (error) {
         if (error.name === "ValidationError") {
             res.status(StatusCodes.BAD_REQUEST).send({ error: "Validation error", details: error.message });
@@ -75,8 +68,9 @@ const updatePost = async (req, res) => {
 };
 
 module.exports = {
-    createPost,
-    getAllPosts,
-    getPostById,
-    updatePost,
+    addComment,
+    getAllComments,
+    getCommentsByPostId,
+    updateComment,
+    deleteComment,
 };
