@@ -4,7 +4,6 @@ import { config } from "dotenv";
 import mongoose, { ConnectOptions } from "mongoose";
 import bodyParser from "body-parser";
 import commentRoutes from "./routes/comments_route";
-
 import postsRoutes from "./routes/posts_route";
 
 config();
