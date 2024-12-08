@@ -1,7 +1,8 @@
-const PostModel = require("../models/posts_model");
-const { StatusCodes } = require("http-status-codes");
+import { Request, Response } from "express";
+import PostModel from "../models/posts_model";
+import { StatusCodes } from "http-status-codes";
 
-const createPost = async (req, res) => {
+export const createPost = async (req: Request, res: Response): Promise<void> => {
     const postBody = req.body;
     try {
         const post = await PostModel.create(postBody);
@@ -15,8 +16,8 @@ const createPost = async (req, res) => {
     }
 };
 
-const getAllPosts = async (req, res) => {
-    const filter = req.query.sender;
+export const getAllPosts = async (req: Request, res: Response): Promise<void> => {
+    const filter = req.query.sender as string | undefined;
 
     try {
         if (filter) {
@@ -35,7 +36,7 @@ const getAllPosts = async (req, res) => {
     }
 };
 
-const getPostById = async (req, res) => {
+export const getPostById = async (req: Request, res: Response): Promise<void> => {
     const postId = req.params.id;
 
     try {
@@ -54,7 +55,7 @@ const getPostById = async (req, res) => {
     }
 };
 
-const updatePost = async (req, res) => {
+export const updatePost = async (req: Request, res: Response): Promise<void> => {
     const postId = req.params.id;
     const { title, content } = req.body;
 
@@ -72,11 +73,4 @@ const updatePost = async (req, res) => {
             res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({ error: "Server error", details: error.message });
         }
     }
-};
-
-module.exports = {
-    createPost,
-    getAllPosts,
-    getPostById,
-    updatePost,
 };
