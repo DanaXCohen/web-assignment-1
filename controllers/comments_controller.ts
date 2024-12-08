@@ -1,8 +1,8 @@
-const Comment = require("../models/comments_model");
-const { StatusCodes } = require("http-status-codes");
+import { Request, Response } from "express";
+import Comment from "../models/comments_model";
+import { StatusCodes } from "http-status-codes";
 
-
-const addComment = async (req, res) => {
+export const addComment = async (req: Request, res: Response): Promise<void> => {
     try {
         const comment = new Comment(req.body);
         await comment.save();
@@ -16,7 +16,7 @@ const addComment = async (req, res) => {
     }
 };
 
-const getAllComments = async (req, res) => {
+export const getAllComments = async (req: Request, res: Response): Promise<void> => {
     try {
         const comments = await Comment.find();
         res.send(comments);
@@ -25,7 +25,7 @@ const getAllComments = async (req, res) => {
     }
 };
 
-const getCommentsByPostId = async (req, res) => {
+export const getCommentsByPostId = async (req: Request, res: Response): Promise<void> => {
     try {
         const comments = await Comment.find({ postId: req.params.postId });
         res.send(comments);
@@ -38,7 +38,7 @@ const getCommentsByPostId = async (req, res) => {
     }
 };
 
-const updateComment = async (req, res) => {
+export const updateComment = async (req: Request, res: Response): Promise<void> => {
     try {
         const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!comment) {
@@ -54,7 +54,7 @@ const updateComment = async (req, res) => {
     }
 };
 
-const deleteComment = async (req, res) => {
+export const deleteComment = async (req: Request, res: Response): Promise<void> => {
     try {
         await Comment.findByIdAndDelete(req.params.id);
         res.send({ message: "Comment deleted" });
@@ -67,7 +67,7 @@ const deleteComment = async (req, res) => {
     }
 };
 
-module.exports = {
+export default {
     addComment,
     getAllComments,
     getCommentsByPostId,
